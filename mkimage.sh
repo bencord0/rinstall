@@ -1,6 +1,6 @@
 #!/bin/bash
 STAGE="stage4-rpi.tar.gz"
-IMAGE="rpi-image.tar"
+IMAGE="rpi-image.img"
 MODULES="modules.zip"
 
 rm ${IMAGE}
