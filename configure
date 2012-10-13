@@ -7,5 +7,11 @@ wget https://github.com/raspberrypi/firmware/raw/master/boot/arm240_start.elf -O
 wget https://github.com/raspberrypi/tools/raw/master/mkimage/args-uncompressed.txt
 wget https://github.com/raspberrypi/tools/raw/master/mkimage/boot-uncompressed.txt
 wget https://github.com/raspberrypi/tools/raw/master/mkimage/imagetool-uncompressed.py
+wget ftp://ftp.kernel.org/pub/tools/crosstool/files/bin/x86_64/4.6.3/x86_64-gcc-4.6.3-nolibc_arm-unknown-linux-gnueabi.tar.xz
+
+# Don't download kernel source if we can avoid it
+if [ ! -e linux ]; then
+    git clone git://github.com/raspberrypi/linux.git linux
+fi
 
 popd
