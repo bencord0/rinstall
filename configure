@@ -1,17 +1,25 @@
 #!/bin/bash
 CURRENT_DIR=$(cd -P $(dirname $0); pwd)
+WGET="wget -c"
+
 pushd $CURRENT_DIR
 
-wget https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin
-wget https://github.com/raspberrypi/firmware/raw/master/boot/arm240_start.elf -O start.elf
-wget https://github.com/raspberrypi/tools/raw/master/mkimage/args-uncompressed.txt
-wget https://github.com/raspberrypi/tools/raw/master/mkimage/boot-uncompressed.txt
-wget https://github.com/raspberrypi/tools/raw/master/mkimage/imagetool-uncompressed.py
-wget ftp://ftp.kernel.org/pub/tools/crosstool/files/bin/x86_64/4.6.3/x86_64-gcc-4.6.3-nolibc_arm-unknown-linux-gnueabi.tar.xz
+$WGET https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin
+$WGET https://github.com/raspberrypi/firmware/raw/master/boot/arm240_start.elf -O start.elf
+$WGET https://github.com/raspberrypi/tools/raw/master/mkimage/args-uncompressed.txt
+$WGET https://github.com/raspberrypi/tools/raw/master/mkimage/boot-uncompressed.txt
+$WGET https://github.com/raspberrypi/tools/raw/master/mkimage/imagetool-uncompressed.py
+$WGET http://dl.condi.me/rinstall/stage4-rpi.tar.gz
 
 # Don't download kernel source if we can avoid it
 if [ ! -e linux ]; then
     git clone git://github.com/raspberrypi/linux.git linux
+fi
+
+if [ ! -e compiler ]; then
+    $WGET ftp://ftp.kernel.org/pub/tools/crosstool/files/bin/x86_64/4.6.3/x86_64-gcc-4.6.3-nolibc_arm-unknown-linux-gnueabi.tar.xz
+    mkdir -p compiler
+    tar xavf x86_64-gcc-4.6.3-nolibc_arm-unknown-linux-gnueabi.tar.xz --strip-components=1 -C compiler
 fi
 
 popd
