@@ -8,7 +8,7 @@ MAKEOPTS+="CROSS_COMPILE=${CURRENT_DIR}/../gcc-4.6.3-nolibc/arm-unknown-linux-gn
 MAKEOPTS+="-j${PARALLEL}"
 
 # Kernel stuff
-# Assume github://raspberrypi/linux (or symplink) under ./linux
+# Assume github://raspberrypi/linux (or symlink) under ./linux
 pushd "${CURRENT_DIR}"/linux
 make ${MAKEOPTS} menuconfig
 make ${MAKEOPTS}
@@ -17,9 +17,9 @@ popd
 
 # Zip the modules
 test "_$1" = "_-m" && {
-    pushd "${CURRENT_DIR}"
+    pushd "${CURRENT_DIR}"/modules
     rm lib/modules/*/{build,source}
-    zip -ru modules.zip lib
+    zip -ru ../modules.zip lib
     popd
 }
 
