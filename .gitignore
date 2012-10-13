@@ -1,0 +1,13 @@
+*.tar.gz
+*.tar.xz
+*.img.gz
+*.zip
+args-uncompressed.txt
+bootcode.bin
+boot-uncompressed.txt
+compiler
+first32k.bin
+imagetool-uncompressed.py
+modules
+rpi-image.img
+start.elf
