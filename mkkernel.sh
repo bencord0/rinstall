@@ -4,7 +4,7 @@ PARALLEL=$(grep processor /proc/cpuinfo | wc -l)
 MAKEOPTS="ARCH=arm "
 
 # Assume compiler from ftp://ftp.kernel.org/pub/tools/crosstool/index.html
-MAKEOPTS+="CROSS_COMPILE=${CURRENT_DIR}/../gcc-4.6.3-nolibc/arm-unknown-linux-gnueabi/bin/arm-unknown-linux-gnueabi- "
+MAKEOPTS+="CROSS_COMPILE=${CURRENT_DIR}/compiler/arm-unknown-linux-gnueabi/bin/arm-unknown-linux-gnueabi- "
 MAKEOPTS+="-j${PARALLEL}"
 
 # Kernel stuff
@@ -12,7 +12,7 @@ MAKEOPTS+="-j${PARALLEL}"
 pushd "${CURRENT_DIR}"/linux
 make ${MAKEOPTS} menuconfig
 make ${MAKEOPTS}
-test "_$1" = "_-m" && $make ${MAKEOPTS} modules_install INSTALL_MOD_PATH="${CURRENT_DIR}"
+test "_$1" = "_-m" && $make ${MAKEOPTS} modules_install INSTALL_MOD_PATH="${CURRENT_DIR}/modules"
 popd
 
 # Zip the modules
