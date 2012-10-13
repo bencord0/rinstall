@@ -6,6 +6,7 @@ MODULES="modules.zip"
 rm ${IMAGE}
 echo "Zeroing image of 2G"
 dd if=/dev/zero | pipebench | dd iflag=fullblock of=$IMAGE bs=1M count=2048
+read
 LOOPDEV="$(sudo losetup --show -f $IMAGE)"
 echo "Loop device on $LOOPDEV"
 echo "Partitioning..."
