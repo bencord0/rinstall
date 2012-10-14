@@ -8,6 +8,7 @@ boot-uncompressed.txt
 compiler
 first32k.bin
 imagetool-uncompressed.py
+kernel.img
 modules
 rpi-image.img
 start.elf
