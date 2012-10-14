@@ -6,7 +6,7 @@ MODULES="modules.zip"
 rm ${IMAGE}
 echo "Zeroing image of 2G"
 dd if=/dev/zero | pipebench | dd iflag=fullblock of=$IMAGE bs=1M count=2048
-echo "done";read
+echo "done. Next-up: Loop setup and partitioning. (requires sudo)";read
 LOOPDEV="$(sudo losetup --show -f $IMAGE)"
 echo "Loop device on $LOOPDEV"
 echo "Partitioning..."
@@ -35,7 +35,7 @@ echo "Creating filesystems"
 DEVMAP=/dev/mapper/$(echo "$LOOPDEV"|cut -d '/' -f 3)
 sudo mkfs.vfat "${DEVMAP}p1"
 sudo mkfs.ext4 "${DEVMAP}p2"
-echo "done";read
+echo "done. Next-up: Mounting filesystems.";read
 echo "Creating rootfs mountpoint"
 sudo mkdir -p /mnt/rpi-root
 echo "Mounting rootfs"
@@ -46,11 +46,11 @@ echo "Mounting bootfs"
 sudo mount ${DEVMAP}p1 /mnt/rpi-root/boot
 echo "Installing..."
 sudo tar xavpf $STAGE -C /mnt/rpi-root
-echo "done";read
+echo "done. Next-up: Kernel and modules.";read
 echo "Adding Kernel and Modules"
 sudo cp ./kernel.img /mnt/rpi-root/boot
 sudo unzip $MODULES -d /mnt/rpi-root
-echo "done";read
+echo "done. Next-up: Unmount and cleanup.";read
 echo "Unmounting bootfs and rootfs"
 sudo umount ${DEVMAP}p1 ${DEVMAP}p2
 echo "Removing mountpoint"
@@ -59,7 +59,7 @@ echo "Clearing partition map"
 sudo kpartx -d $LOOPDEV
 echo "Removing loop device"
 sudo losetup -d $LOOPDEV
-echo "done";read
+#echo "done";read
 echo "Compressing image"
 gzip -c $IMAGE | pipebench > ${IMAGE}.gz
 #rm $IMAGE
