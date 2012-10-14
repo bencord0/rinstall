@@ -4,8 +4,8 @@ IMAGE="rpi-image.img"
 MODULES="modules.zip"
 
 rm ${IMAGE}
-echo "Zeroing image of 2G"
-dd if=/dev/zero | pipebench | dd iflag=fullblock of=$IMAGE bs=1M count=2048
+echo "Zeroing image of 3G"
+dd if=/dev/zero | pipebench | dd iflag=fullblock of=$IMAGE bs=1M count=3072
 echo "done. Next-up: Loop setup and partitioning. (requires sudo)";read
 LOOPDEV="$(sudo losetup --show -f $IMAGE)"
 echo "Loop device on $LOOPDEV"
@@ -15,7 +15,7 @@ n
 p
 1
 
-+200M
++500M
 t
 c
 a
