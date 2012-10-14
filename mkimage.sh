@@ -47,7 +47,8 @@ sudo mount ${DEVMAP}p1 /mnt/rpi-root/boot
 echo "Installing..."
 sudo tar xavpf $STAGE -C /mnt/rpi-root
 echo "done";read
-echo "Adding Modules"
+echo "Adding Kernel and Modules"
+sudo cp ./kernel.img /mnt/rpi-root/boot
 sudo unzip $MODULES -d /mnt/rpi-root
 echo "done";read
 echo "Unmounting bootfs and rootfs"
