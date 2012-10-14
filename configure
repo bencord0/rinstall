@@ -9,7 +9,7 @@ $WGET https://github.com/raspberrypi/firmware/raw/master/boot/arm240_start.elf -
 $WGET https://github.com/raspberrypi/tools/raw/master/mkimage/args-uncompressed.txt
 $WGET https://github.com/raspberrypi/tools/raw/master/mkimage/boot-uncompressed.txt
 $WGET https://github.com/raspberrypi/tools/raw/master/mkimage/imagetool-uncompressed.py
-$WGET http://dl.condi.me/rinstall/stage4-rpi.tar.gz
+$WGET https://github.com/downloads/bencord0/rinstall/stage4-rpi.tar.gz
 
 # Don't download kernel source if we can avoid it
 if [ ! -e linux ]; then
