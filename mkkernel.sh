@@ -12,16 +12,17 @@ MAKEOPTS+="-j${PARALLEL}"
 pushd "${CURRENT_DIR}"/linux
 make ${MAKEOPTS} menuconfig
 make ${MAKEOPTS}
-test "_$1" = "_-m" && $make ${MAKEOPTS} modules_install INSTALL_MOD_PATH="${CURRENT_DIR}/modules"
+#test "_$1" = "_-m" && \
+$make ${MAKEOPTS} modules_install INSTALL_MOD_PATH="${CURRENT_DIR}/modules"
 popd
 
 # Zip the modules
-test "_$1" = "_-m" && {
+#test "_$1" = "_-m" && {
     pushd "${CURRENT_DIR}"/modules
     rm lib/modules/*/{build,source}
     zip -ru ../modules.zip lib
     popd
-}
+#}
 
 # RaspberryPi-ify Kernel
 pushd "${CURRENT_DIR}"
