@@ -53,13 +53,13 @@ The kernel and modules built with the ./mkkernel.sh script will then be installe
 
 The script will clean up, unmounting the loop device and compress the resulting image.
 
-Upload rpi-image.img.gz to any mirrors for distribution.
+Upload [rpi-image.img.gz](http://dl.condi.me/rinstall/rpi-image.img.gz) to any mirrors for distribution.
 Install rpi-image.img to an SDCard with dd, or [Win32DiskImager](https://launchpad.net/win32-image-writer).
 
 Notes
 -----
 
-The creation of a stage4 tarball is out of scope of this tool.
+The creation of a [stage4 tarball](http://dl.condi.me/rinstall/stage4-rpi.tar.gz) is out of scope of this tool.
 
 It would be nice to upload the rpi-image.img.gz to a Raspberry Pi directly to perform an in-place upgrade.
 
