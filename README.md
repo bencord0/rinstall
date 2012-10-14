@@ -10,22 +10,23 @@ This scripts in this repository take a stage4 tarball to create a raw SDCard ima
 Dependencies
 ------------
 
-    * app-arch/tar        (s)
-    * app-arch/gzip       (s)
-    * net-misc/wget       (s)
-    * sys-apps/coreutils  (s)
-    * sys-apps/util-linux (s)
-    * sys-devel/make      (s)
-    * sys-fs/e2fsprogs    (s)
-    * app-admin/sudo
+    * app-arch/tar             (s)
+    * app-arch/gzip            (s)
+    * net-misc/wget            (s)
+    * sys-apps/coreutils       (s)
+    * sys-apps/util-linux      (s)
+    * sys-devel/make           (s)
+    * sys-fs/e2fsprogs         (s)
+    * app-admin/sudo           (o)
     * app-arch/zip
-    * app-benchmarks/pipebench [Not strictly required, but nice to have]
+    * app-benchmarks/pipebench (o)
     * dev-lang/python
     * dev-vcs/git
     * sys-fs/multipath-tools
     * sys-fs/dosfstools
 
 (s) Typically found in @system
+(o) Optional, but you might need to modify the scripts.
 
 How to use
 ----------
