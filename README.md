@@ -17,6 +17,7 @@ Dependencies
     * sys-apps/util-linux (s)
     * sys-devel/make      (s)
     * sys-fs/e2fsprogs    (s)
+    * app-admin/sudo
     * app-arch/zip
     * app-benchmarks/pipebench [Not strictly required, but nice to have]
     * dev-lang/python
