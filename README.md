@@ -64,3 +64,10 @@ The creation of a [stage4 tarball](http://dl.condi.me/rinstall/stage4-rpi.tar.gz
 
 It would be nice to upload the rpi-image.img.gz to a Raspberry Pi directly to perform an in-place upgrade.
 
+
+On Optional Dependencies
+---------------------
+The ./mkinstall.sh script uses sudo and is the only phase that requires root privilages. In general, it is a bad idea to compile with root privilages.
+If you don't use sudo (or have it installed) on your system, edit the script and run as root.
+
+The pipebench optional dependency can be disabled, just remove it between the pipes.
