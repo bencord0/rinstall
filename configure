@@ -5,7 +5,7 @@ WGET="wget -c"
 pushd $CURRENT_DIR
 
 $WGET https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin
-$WGET https://github.com/raspberrypi/firmware/raw/master/boot/arm240_start.elf -O start.elf
+$WGET https://github.com/raspberrypi/firmware/raw/master/boot/start.elf
 $WGET https://github.com/raspberrypi/tools/raw/master/mkimage/args-uncompressed.txt
 $WGET https://github.com/raspberrypi/tools/raw/master/mkimage/boot-uncompressed.txt
 $WGET https://github.com/raspberrypi/tools/raw/master/mkimage/imagetool-uncompressed.py

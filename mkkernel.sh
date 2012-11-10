@@ -13,7 +13,7 @@ pushd "${CURRENT_DIR}"/linux
 make ${MAKEOPTS} menuconfig
 make ${MAKEOPTS}
 #test "_$1" = "_-m" && \
-$make ${MAKEOPTS} modules_install INSTALL_MOD_PATH="${CURRENT_DIR}/modules"
+make ${MAKEOPTS} modules_install INSTALL_MOD_PATH="${CURRENT_DIR}/modules"
 popd
 
 # Zip the modules
