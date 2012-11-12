@@ -12,3 +12,4 @@ kernel.img
 modules
 rpi-image.img
 start.elf
+cmdline.txt
