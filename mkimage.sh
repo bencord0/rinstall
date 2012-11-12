@@ -50,10 +50,13 @@ echo "Installing..."
 sudo tar xavpf $STAGE -C /mnt/rpi-root
 echo "done. Next-up: Kernel and modules."
 echo "Press ENTER to continue...";read
-echo "Adding Kernel and Modules"
+echo "Adding Kernel, modules and other bootfiles"
 sudo unzip $MODULES -d /mnt/rpi-root
 sudo cp -v ./kernel.img ./modules.zip /mnt/rpi-root/boot
 sudo cp -v ./bootcode.bin start.elf /mnt/rpi-root/boot
+sudo mkdir -p /mnt/rpi-root/boot/config
+echo "Adding squash portage"
+sudo cp -v ./portage.squashfs /mnt/rpi-root/usr/portage
 echo "done. Next-up: Unmount and cleanup."
 echo "Press ENTER to continue...";read
 echo "Unmounting bootfs and rootfs"
