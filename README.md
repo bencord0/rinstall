@@ -22,11 +22,19 @@ Dependencies
     * app-benchmarks/pipebench (o)
     * dev-lang/python
     * dev-vcs/git
+    * sys-boot/syslinux        (x)
     * sys-fs/multipath-tools
     * sys-fs/dosfstools
+    * sys-libs/zlib[static-libs](o)
 
 (s) Typically found in @system
 (o) Optional, but you might need to modify the scripts.
+(x) Needed to boot x86-64. Very much optional.
+
+Dependency Notes
+----------------
+zlib might need to be recompiled with the static-libs flag for the qemu/chroot to work.
+Without qemu/chroot, stage4 can still be created natively.
 
 How to use
 ----------
@@ -72,3 +80,12 @@ The ./mkinstall.sh script uses sudo and is the only phase that requires root pri
 If you don't use sudo (or have it installed) on your system, edit the script and run as root.
 
 The pipebench optional dependency can be disabled, just remove it between the pipes.
+
+x86_64 Booting
+--------------
+SDCards can also be used to boot traditional computers too.
+
+The ./add_extras.sh script (to be run after ./mkimage.sh) will let you boot into a Gentoo minimal install live environment.
+
+This requires syslinux and is strictly an additional/optional feature good for debugging the SDCard for endusers that only have windows nearby.
+

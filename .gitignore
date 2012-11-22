@@ -13,3 +13,4 @@ modules
 rpi-image.img
 start.elf
 cmdline.txt
+qemu-arm

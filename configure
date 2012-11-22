@@ -1,5 +1,6 @@
 #!/bin/bash
 CURRENT_DIR=$(cd -P $(dirname $0); pwd)
+PARALLEL=$(grep processor /proc/cpuinfo | wc -l)
 WGET="wget -c"
 
 pushd $CURRENT_DIR
@@ -25,4 +26,15 @@ if [ ! -e compiler ]; then
     tar xavf x86_64-gcc-4.6.3-nolibc_arm-unknown-linux-gnueabi.tar.xz --strip-components=1 -C compiler
 fi
 
-popd
+# http://www.compulab.co.il/workspace/mediawiki/index.php5/Linux:_Development_for_ARM_modules#Chroot_with_QEMU
+if [ ! -e qemu-arm ]; then
+    $WGET http://download.savannah.gnu.org/releases/qemu/qemu-0.14.1.tar.gz
+    mkdir -p qemu-arm
+    tar xavf qemu-0.14.1.tar.gz -C qemu-arm
+    pushd qemu-arm/qemu-0.14.1
+        ./configure --static --target-list="armeb-linux-user arm-linux-user"
+        make -j${PARALLEL}
+    popd
+fi
+
+popd # CURRENT_DIR
