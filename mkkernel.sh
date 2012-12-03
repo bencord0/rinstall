@@ -30,7 +30,7 @@ pushd "${CURRENT_DIR}"
 python2 imagetool-uncompressed.py linux/arch/arm/boot/Image
 popd
 
-if [ -e "{CURRENT_DIR}"/kernel.img ]; then
+if [ -e "${CURRENT_DIR}"/kernel.img ]; then
     echo "Your fresh kernel.img is ready"
     md5sum "${CURRENT_DIR}"/kernel.img
 else
