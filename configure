@@ -37,4 +37,12 @@ if [ ! -e qemu-arm ]; then
     popd
 fi
 
+# http://kernelnomicon.org/?p=92
+if [! -e u-boot ]; then
+    git clone git://git.denx.de/u-boot.git u-boot
+    pushd "${CURRENT_DIR}"/u-boot
+    make ${MAKEOPTS} rpi_b_config
+    popd
+fi
+
 popd # CURRENT_DIR
