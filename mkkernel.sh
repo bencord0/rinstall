@@ -25,9 +25,16 @@ popd
 #}
 
 # RaspberryPi-ify Kernel
+rm -f "${CURRENT_DIR}"/kernel.img
 pushd "${CURRENT_DIR}"
 python imagetool-uncompressed.py linux/arch/arm/boot/Image
 popd
 
-echo "Your fresh kernel.img is ready"
-md5sum "${CURRENT_DIR}"/kernel.img
+if [ -e "{CURRENT_DIR}"/kernel.img ]; then
+    echo "Your fresh kernel.img is ready"
+    md5sum "${CURRENT_DIR}"/kernel.img
+else
+    echo "Kernel build failed"
+    exit 1
+fi
+
