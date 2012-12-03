@@ -1,0 +1,16 @@
+Target features for v1.0
+========================
+- Builds from stage3.
+    * Qemu (done)
+    * Register binfmt_misc
+    * chroot + emerge
+- Working upgrade mechanism.
+    * kernel upgrade/switch (u-boot can be helpful)
+    * rootfs upgrade/switch
+        = use an initramfs to overwrite rootfs during a reboot cycle
+        = dual-rootfs, upgrade B image, and switch on reboot
+        = other upgrade mechanisms TBD
+- CI builds
+- licensing
+- versioning
+
