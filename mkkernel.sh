@@ -27,7 +27,7 @@ popd
 # RaspberryPi-ify Kernel
 rm -f "${CURRENT_DIR}"/kernel.img
 pushd "${CURRENT_DIR}"
-python imagetool-uncompressed.py linux/arch/arm/boot/Image
+python2 imagetool-uncompressed.py linux/arch/arm/boot/Image
 popd
 
 if [ -e "{CURRENT_DIR}"/kernel.img ]; then
