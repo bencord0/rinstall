@@ -16,6 +16,9 @@ waitforuser () {
     fi
 }
 
+# If pipebench is not installed, fake it with cat
+which pipebench > /dev/null || alias pipebench=cat
+
 rm ${IMAGE}
 echo "Zeroing image of 3G"
 dd if=/dev/zero | pipebench | dd iflag=fullblock of=$IMAGE bs=1M count=3072
