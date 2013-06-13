@@ -17,34 +17,11 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-set -e
-
 CURRENT_DIR=$(cd -P $(dirname $0); pwd)
-PARALLEL=$(grep processor /proc/cpuinfo | wc -l)
-MAKEOPTS="ARCH=arm "
 
-# Assume compiler from ftp://ftp.kernel.org/pub/tools/crosstool/index.html
-MAKEOPTS+="CROSS_COMPILE=${CURRENT_DIR}/compiler/arm-unknown-linux-gnueabi/bin/arm-unknown-linux-gnueabi- "
-MAKEOPTS+="-j${PARALLEL}"
-
-# Kernel stuff
-# Assume github://raspberrypi/linux (or symlink) under ./linux
-pushd "${CURRENT_DIR}"/linux
-yes ""|make ${MAKEOPTS} oldconfig
-make ${MAKEOPTS}
-popd
-
-# RaspberryPi-ify Kernel
-rm -f "${CURRENT_DIR}"/kernel.img
-pushd "${CURRENT_DIR}"
-python2 imagetool-uncompressed.py linux/arch/arm/boot/Image
-popd
-
-if [ -e "${CURRENT_DIR}"/kernel.img ]; then
-    echo "Your fresh kernel.img is ready"
-    md5sum "${CURRENT_DIR}"/kernel.img
-else
-    echo "Kernel build failed"
-    exit 1
-fi
-
+# needs to be root owned to save a uid later.
+sudo mkdir ${CURRENT_DIR}/rpi-root
+# needs to be root to get permissions correct.
+cat stage4-rpi.tar.gz | pipebench | sudo tar xzpf - -C rpi-root
+# needs to be root to read files properly.
+sudo mksquashfs root rpi-image.squashfs -comp xz

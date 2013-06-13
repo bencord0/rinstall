@@ -1,4 +1,22 @@
 #!/bin/bash
+#
+# Copyright 2013 Ben Cordero
+#
+# This file is part of rinstall.
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 STAGE="stage4-rpi.tar.gz"
 IMAGE="rpi-image.img"
 MODULES="modules.zip"
@@ -24,10 +42,8 @@ echo "Zeroing image of 3G"
 dd if=/dev/zero | pipebench | dd iflag=fullblock of=$IMAGE bs=1M count=3072
 echo "done. Next-up: Loop setup and partitioning. (requires sudo)"
 waitforuser
-LOOPDEV="$(sudo losetup --show -f $IMAGE)"
-echo "Loop device on $LOOPDEV"
 echo "Partitioning..."
-sudo fdisk $LOOPDEV << EOF
+sudo fdisk $IMAGE << EOF
 n
 p
 1
@@ -44,7 +60,7 @@ p
 
 w
 EOF
-sudo fdisk -l $LOOPDEV
+sudo fdisk -l $IMAGE
 echo "Reading partitions"
 sudo kpartx -a $LOOPDEV
 sudo kpartx -l $LOOPDEV;
